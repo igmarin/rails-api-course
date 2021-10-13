@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Article, type: :model do
-  describe 'Valid Article' do
+  describe 'valid' do
     it 'has a valid title' do
       article = build(:article, title: 'Test 1')
       expect(article).to be_valid
