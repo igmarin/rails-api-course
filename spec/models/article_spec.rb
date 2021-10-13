@@ -4,20 +4,30 @@ require 'rails_helper'
 
 RSpec.describe Article, type: :model do
   describe 'Valid Article' do
-    it 'Article with title should be valid' do
+    it 'has a valid title' do
       article = build(:article, title: 'Test 1')
       expect(article).to be_valid
     end
 
-    it 'Expect article to have slug, title and context' do
+    it 'has an invalid title' do
+      article = build(:article, title: '')
+      expect(article).to be_invalid
+      expect(article.errors[:title]).to include("can't be blank")
+    end
+
+    it 'is valid and saved' do
       article = create(:article)
       expect(article).to be_valid
       expect(Article.count).to eq(1)
     end
 
-    it 'Article without title should be invalid' do
-      article = build(:article, title: nil)
+    it 'slug is not uniq' do
+      article = create(:article, slug: 'slug-1')
+      expect(article).to be_valid
+
+      article = build(:article, slug: 'slug-1')
       expect(article).to be_invalid
+      expect(article.errors[:slug]).to include('has already been taken')
     end
   end
 end
