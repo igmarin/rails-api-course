@@ -7,7 +7,9 @@ ruby '3.0.2'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'jsom-pagination'
+gem 'jsonapi_errors_handler'
 gem 'jsonapi-serializer'
+gem 'octokit', '~> 4.0'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rack-cors'
